@@ -1,0 +1,6 @@
+[submodule "NJMPU-API"]
+	path = NJMPU-API
+	url = git@github.com:marousta/NJMPU-API.git
+[submodule "NJMPU-FRONT"]
+	path = NJMPU-FRONT
+	url = git@github.com:jorundev/transcendance_front.git
