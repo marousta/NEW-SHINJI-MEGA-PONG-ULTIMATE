@@ -5,3 +5,6 @@ Thumbs.db
 
 # Credentials
 .env
+
+# Docker
+Docker/*/log/*.log
