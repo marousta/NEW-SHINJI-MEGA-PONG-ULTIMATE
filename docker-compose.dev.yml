@@ -19,7 +19,7 @@ services:
         expose:
             - 5432
     backend:
-        command: bash -c 'yarn install && yarn run start'
+        command: bash -c 'yarn install && yarn run start:dev'
         stop_grace_period: 3s
         depends_on:
             - postgresql
@@ -37,7 +37,7 @@ services:
         expose:
             - 3000
     frontend:
-        command: bash -c 'yarn install && yarn run build && nginx -g "daemon off;"'
+        command: bash -c 'yarn install && yarn run dev --host'
         stop_grace_period: 3s
         depends_on:
             - backend
@@ -47,8 +47,23 @@ services:
             target: frontend
         volumes:
             - ./NJMPU-FRONT:/app
+        networks:
+            - backend
+            - frontend
+        expose:
+            - 5000
+    nginx:
+        command: bash -c 'nginx -g "daemon off;"'
+        stop_grace_period: 3s
+        depends_on:
+            - frontend
+        restart: unless-stopped
+        build:
+            context: .
+            target: frontend
+        volumes:
             - ./Docker/nginx/nginx.conf:/etc/nginx/nginx.conf:r
-            - ./Docker/nginx/app.conf:/etc/nginx/sites-enabled/default:r
+            - ./Docker/nginx/app.dev.conf:/etc/nginx/sites-enabled/default:r
             - ./Docker/nginx/log:/var/log/nginx
         networks:
             - backend

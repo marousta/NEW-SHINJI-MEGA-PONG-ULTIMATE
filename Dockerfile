@@ -48,7 +48,7 @@ RUN ssh-keygen -t rsa -m PEM -b 4096 -Z chacha20-poly1305@openssh.com -f /etc/ss
 EXPOSE 3000
 
 ############################
-FROM yarn AS nginx
+FROM yarn AS frontend
 
 RUN apt-get install -y openssl nginx
 RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
@@ -56,3 +56,4 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
 	-keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt
 
 EXPOSE 443
+EXPOSE 5000
