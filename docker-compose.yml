@@ -47,6 +47,7 @@ services:
             target: frontend
         volumes:
             - ./NJMPU-FRONT:/app
+            - ./NJMPU-API/shared:/app/dist/pictures:r
             - ./Docker/nginx/nginx.conf:/etc/nginx/nginx.conf:r
             - ./Docker/nginx/app.conf:/etc/nginx/sites-enabled/default:r
             - ./Docker/nginx/log:/var/log/nginx
