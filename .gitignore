@@ -7,4 +7,5 @@ Thumbs.db
 .env
 
 # Docker
-Docker/*/log/*.log
+Docker/*/log/
+!Docker/*/log/empty
