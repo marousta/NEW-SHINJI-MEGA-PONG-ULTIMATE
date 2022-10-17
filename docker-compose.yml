@@ -24,8 +24,7 @@ services:
         depends_on:
             - postgresql
         restart: unless-stopped
-        env_file:
-            - .env
+        env_file: .env
         build:
             context: .
             target: backend
@@ -37,18 +36,20 @@ services:
         expose:
             - 3000
     frontend:
-        command: bash -c 'yarn install && yarn run build && nginx -g "daemon off;"'
+        command: bash -c 'bash /nginx.sh && yarn install && yarn run build && nginx -g "daemon off;"'
         stop_grace_period: 3s
         depends_on:
             - backend
         restart: unless-stopped
+        env_file: .env
         build:
             context: .
             target: frontend
         volumes:
             - ./NJMPU-FRONT:/app
-            - ./NJMPU-API/shared:/app/dist/pictures:r
-            - ./Docker/nginx/nginx.conf:/etc/nginx/nginx.conf:r
+            - ./NJMPU-API/${IMG_PATH}:/app/dist/pictures:r
+            - ./Docker/nginx/nginx.sh:/nginx.sh:r
+            - ./Docker/nginx/nginx.conf:/etc/nginx/nginx.conf.template:r
             - ./Docker/nginx/app.conf:/etc/nginx/sites-enabled/default:r
             - ./Docker/nginx/log:/var/log/nginx
         networks:
