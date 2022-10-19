@@ -6,10 +6,6 @@
 
 ## Description
 
-## Installation
-
-< Dependencies >
-
 ## Running the app
 
 ```bash
@@ -19,6 +15,6 @@ $ docker compose up --build
 
 # development
 
-$ undefined
+$ docker compose up -f docker-compose.dev.yml up --build
 
 ```
