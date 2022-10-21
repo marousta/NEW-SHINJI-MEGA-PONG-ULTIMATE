@@ -15,6 +15,19 @@ $ docker compose up --build
 
 # development
 
-$ docker compose up -f docker-compose.dev.yml up --build
+$ docker compose -f docker-compose.dev.yml up --build
 
+# run with ngrok
+
+# sign up here https://ngrok.com/
+# install ngrok
+# register your server with the provided token
+$ ngrok config add-authtoken <token>
+
+# run ngrok
+# https is for premium account only
+$ ngrok http 80
+
+# copy the provided url into DOMAIN in your .env file
+$ docker compose -f docker-compose.ngrok.yml up --build
 ```

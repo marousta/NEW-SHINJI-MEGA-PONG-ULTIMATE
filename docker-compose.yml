@@ -11,6 +11,8 @@ services:
             args:
                 - password=${PSQL_PASSWORD}
                 - database=${PSQL_DATABASE}
+        healthcheck:
+            test: ['CMD', 'pg_isready', '-U', 'postgres']
         # volumes:
         #     - "./containers/postgresql/log:/var/log/postgresql"
         #     - "./containers/postgresql/data:/var/lib/postgresql"
