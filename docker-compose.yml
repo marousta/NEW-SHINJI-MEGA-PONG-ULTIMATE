@@ -12,7 +12,7 @@ services:
                 - password=${PSQL_PASSWORD}
                 - database=${PSQL_DATABASE}
         healthcheck:
-            test: ['CMD', 'pg_isready', '-U', 'postgres']
+            test: [ 'CMD', 'pg_isready', '-U', 'postgres' ]
         # volumes:
         #     - "./containers/postgresql/log:/var/log/postgresql"
         #     - "./containers/postgresql/data:/var/lib/postgresql"
@@ -21,7 +21,7 @@ services:
         expose:
             - 5432
     backend:
-        command: bash -c 'yarn install && yarn run start'
+        command: bash -c 'yarn install && yarn run build && yarn run start:prod'
         stop_grace_period: 3s
         depends_on:
             - postgresql

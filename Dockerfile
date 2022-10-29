@@ -42,7 +42,7 @@ WORKDIR /app
 ############################
 FROM yarn AS backend
 
-RUN apt-get install -y openssh-client
+RUN apt-get install -y openssh-client qrencode
 RUN ssh-keygen -t rsa -m PEM -b 4096 -Z chacha20-poly1305@openssh.com -f /etc/ssl/jwt.pem -q -N ""
 
 EXPOSE 3000
