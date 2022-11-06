@@ -7,27 +7,6 @@ RUN apt-get update \
 	&& apt-get upgrade -y
 
 ############################
-FROM default AS postgresql
-
-ARG password
-ARG database
-
-RUN apt-get install -y sudo postgresql
-RUN echo "listen_addresses = '*'" >> /etc/postgresql/12/main/postgresql.conf \
-	&& echo "host    all             all             10.0.0.0/8             md5"  >> /etc/postgresql/12/main/pg_hba.conf \
-	&& echo "host    all             all             172.0.0.0/8             md5"  >> /etc/postgresql/12/main/pg_hba.conf \
-	&& echo "host    all             all             192.168.0.0/16             md5"  >> /etc/postgresql/12/main/pg_hba.conf
-RUN service postgresql start \
-	&& sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password';" \
-	&& sudo -u postgres psql -c "CREATE DATABASE $database;"
-
-EXPOSE 5432
-
-USER postgres
-
-CMD /usr/lib/postgresql/12/bin/postgres -D "/var/lib/postgresql/12/main" -c "config_file=/etc/postgresql/12/main/postgresql.conf" >> /var/log/postgresql/service.log
-
-############################
 FROM default AS yarn
 
 RUN apt-get install -y curl
