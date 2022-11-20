@@ -11,7 +11,7 @@ WORKDIR /app
 ############################
 FROM yarn AS backend
 
-RUN apt-get install -y openssh-client qrencode ffmpeg
+RUN apt-get install -y openssh-client wget qrencode ffmpeg
 RUN ssh-keygen -t rsa -m PEM -b 4096 -Z chacha20-poly1305@openssh.com -f /etc/ssl/jwt.pem -q -N "" \
 	&& openssl rsa -in /etc/ssl/jwt.pem -pubout -out /etc/ssl/jwt.pem.pub
 
