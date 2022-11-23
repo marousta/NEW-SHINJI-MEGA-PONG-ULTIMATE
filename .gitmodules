@@ -5,3 +5,4 @@
 [submodule "NJMPU-FRONT"]
 	path = NJMPU-FRONT
 	url = git@github.com:jorundev/transcendance_front.git
+	branch = master
