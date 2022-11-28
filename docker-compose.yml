@@ -47,6 +47,8 @@ services:
         build:
             context: .
             target: frontend
+        healthcheck:
+            test: [ 'CMD-SHELL', 'wget -q --spider --proxy=off --no-check-certificate https://localhost || exit 1' ]
         volumes:
             - ./NJMPU-FRONT:/app
             - shared:/app/pictures:r
