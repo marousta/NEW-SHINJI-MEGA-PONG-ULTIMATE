@@ -4,17 +4,35 @@
 
 </p>
 
-## Description
+# Description
 
-## Running the app
+Final project of the 42 cursus common core. More details [here](https://github.com/marousta/NEW-SHINJI-MEGA-PONG-ULTIMATE/blob/main/subject.pdf).
+
+# Features
+
+-   Super responsive.
+-   Support chromium based browsers and firefox.
+-   Support authentication from 42, Twitter, Discord and Emails. Frontend auto adapts. Every account are prompt to enter a password for recovery purposes.
+-   Time based two-factor authentication.
+-   User can have a chat with friends or strangers, change their profile picture (updated on all connected users in real time), block other users, play the game and more !
+-   Chat with public and private channels and direct messages.
+-   Channels have administators and moderators who can mute, kick, ban, promote, change name of the channel and it's profile picture.
+-   You can play with your friends or play with other players in matchmaking (you can't match with a blocked user).
+-   18 levels to climb with coherent XP scaling.
+-   Application wide super user (wip) for moderation purposes.
+-   Robust API with many validation processes and short response times.
+-   Lightweight precompiled blazing fast frontend thanks to [Svelte](https://svelte.dev).
+-   Supports multi tab.
+
+# Running the app
+
+Create and fill the .env file with the help of template.
 
 ```bash
 # production mode
-
 $ docker compose up --build
 
 # development
-
 $ docker compose -f docker-compose.dev.yml up --build
 
 # run with ngrok
@@ -31,3 +49,7 @@ $ ngrok http 80
 # copy the provided url into DOMAIN in your .env file
 $ docker compose -f docker-compose.ngrok.yml up --build
 ```
+
+# Additional notes
+
+You lost.
